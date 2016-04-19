@@ -1,6 +1,6 @@
 {
   "name": "gulp-deps-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a plugins to load dependences in htmls",
   "main": "index.js",
   "scripts": {
