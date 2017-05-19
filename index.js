@@ -109,7 +109,7 @@ module.exports = function (opts) {
         if (css.length) {
             chunk = String(file.contents);
             tpl = '<link rel="stylesheet" href="' + options.css_prefix + css.join('">\n<link rel="stylesheet" href="' + options.css_prefix) + '">\n';
-            chunk = chunk.replace('</head>', tpl + '</head>');
+            chunk = /(<link[\s\S]*<\/head>)/.test(chunk) ? chunk.replace(/(<link[\s\S]*<\/head>)/g, tpl + '$1') : chunk.replace('</head>', tpl + '</head>')
 
             file.contents = new Buffer(chunk);
         }
