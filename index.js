@@ -46,12 +46,11 @@ var loadJSDeps = function (file, defaultDeps) {
     var filename = path.basename(filePath, '.html');
     var dir = path.dirname(filePath);
     var jsPath = dir + '/' + filename + '.js';
-    var paths = defaultDeps || [];
+    var paths = (defaultDeps && defaultDeps.slice()) || [];
 
     if (fs.existsSync(jsPath)) {
         jsPath = path.relative(file.base, jsPath);
         var ids = getIdsByPath(jsPath);
-
         loadDepsByIds(ids, paths);
     }
 
@@ -63,7 +62,7 @@ var loadCssDeps = function (file, js, defaultDeps) {
     var filename = path.basename(filePath, '.html');
     var dir = path.dirname(filePath);
     var jsPath = dir + '/' + filename + '.js';
-    var paths = defaultDeps || [];
+    var paths = (defaultDeps && defaultDeps.slice()) || [];
 
     js = js.slice();
     jsPath = path.relative(file.base, jsPath);
